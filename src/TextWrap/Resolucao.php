@@ -47,7 +47,7 @@ class Resolucao implements TextWrapInterface {
 					// adiciona a palavra ao array
 					array_push($ans, $palavras);
 					// zera o contador e reinicia a string palavras para poder adicionar uma proxima palavra ao array
-					$contador = 0;
+					$contador = 2;
 					$palavras = '';
 				}
 				// se a palavra for maior que o limite
@@ -60,7 +60,7 @@ class Resolucao implements TextWrapInterface {
 							// adiciona a palavra ao array
 							array_push($ans, $palavras);
 							// zera o contador e reinicia a string palavras para poder adicionar uma proxima palavra ao array
-							$contador = 0;
+							$contador = 2;
 							$palavras = '';
 						}
 					}
