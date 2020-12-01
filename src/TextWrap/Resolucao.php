@@ -25,9 +25,9 @@ class Resolucao implements TextWrapInterface {
 	 */
 	public function textWrap(string $text, int $length): array {
 		$n = strlen($text);
-		$contador = 0;
+		$contador = 1;
 		$palavras = '';
-		$remove = -1;
+		$remove = 0;
 		$ans = array();
 		// se a string for vazia retorna null
 		if ($n == 0) {
@@ -47,7 +47,7 @@ class Resolucao implements TextWrapInterface {
 					// adiciona a palavra ao array
 					array_push($ans, $palavras);
 					// zera o contador e reinicia a string palavras para poder adicionar uma proxima palavra ao array
-					$contador = 0;
+					$contador = 1;
 					$palavras = '';
 				}
 				// se a palavra for maior que o limite
@@ -60,7 +60,7 @@ class Resolucao implements TextWrapInterface {
 							// adiciona a palavra ao array
 							array_push($ans, $palavras);
 							// zera o contador e reinicia a string palavras para poder adicionar uma proxima palavra ao array
-							$contador = 0;
+							$contador = 1;
 							$palavras = '';
 						}
 					}
