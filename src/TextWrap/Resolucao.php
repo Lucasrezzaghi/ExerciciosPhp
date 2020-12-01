@@ -27,7 +27,7 @@ class Resolucao implements TextWrapInterface {
 		$n = strlen($text);
 		$contador = 0;
 		$palavras = '';
-		$remove = 0;
+		$remove = -1;
 		$ans = array();
 		// se a string for vazia retorna null
 		if ($n == 0) {
@@ -51,9 +51,9 @@ class Resolucao implements TextWrapInterface {
 					$palavras = '';
 				}
 				// se a palavra for maior que o limite
-				if ($contador > $length) {
+				elseif ($contador > $length) {
 					// conta quantos caracteres a mais desde o ultimo espaco, remove e adiciona na string palavras
-					for ($j = $contador - 1; $j >= $espaco; $j--) {
+					for ($j = $contador; $j >= $espaco; $j--) {
 						$remove++;
 						if ($j == $espaco) {
 							substr($palavras, 0, - $remove);
