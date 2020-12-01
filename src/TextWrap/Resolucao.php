@@ -42,7 +42,7 @@ class Resolucao implements TextWrapInterface {
 			if ($text[$i] == ' ') {
 				// guarda a posicao do ultimo espaco
 				$espaco = $i;
-				// se o numero de letras adicionas for igual ao limite
+				// se o numero de letras adicionas for igual ao limite da linha
 				if ($contador == $length) {
 					// adiciona a palavra ao array
 					array_push($ans, $palavras);
