@@ -16,52 +16,58 @@ namespace Galoa\ExerciciosPhp\TextWrap;
  */
 class Resolucao implements TextWrapInterface {
 
-  /**
-   * {@inheritdoc}
-   *
-   * Apague o conteúdo do método abaixo e escreva sua própria implementação,
-   * nós colocamos esse mock para poder rodar a análise de cobertura dos
-   * testes unitários.
-   */
-  public function textWrap(string $text, int $length): array {
-    if ($length === 8) {
-      return [
-        'Se vi',
-        'mais',
-        'longe',
-        'foi por',
-        'estar de',
-        'pé sobre',
-        'ombros',
-        'de',
-        'gigantes',
-      ];
-    }
-    elseif ($length === 12) {
-      return [
-        'Se vi mais',
-        'longe foi',
-        'por estar de',
-        'pé sobre',
-        'ombros de',
-        'gigantes',
-      ];
-    }
-    elseif ($length === 10) {
-      // Por favor, não implemente o código desse jeito, isso é só um mock.
-      $ret = [
-        'Se vi mais',
-        'longe foi',
-        'por estar',
-        'de pé',
-        'sobre',
-      ];
-      $ret[] = 'ombros de';
-      $ret[] = 'gigantes';
-      return $ret;
-    }
-
-    return [""];
-  }
-
+	/**
+	 * {@inheritdoc}
+	 *
+	 * Apague o conteúdo do método abaixo e escreva sua própria implementação,
+	 * nós colocamos esse mock para poder rodar a análise de cobertura dos
+	 * testes unitários.
+	 */
+	public function textWrap(string $text, int $length): array {
+		$n = strlen($text);
+		$contador = 0;
+		$palavras = '';
+		$remove = 0;
+		$ans = array();
+		// se a string for vazia retorna null
+		if ($n == 0) {
+			return [NULL];
+		}
+		for ($i = 0;$i < $n; $i++) {
+			// adiciona uma letra por vez na variavel palavra
+			$palavras .= $text[$i];
+			// contador de letras adicionadas
+			$contador++;
+			// se a letra for um espaco
+			if ($text[$i] == ' ') {
+				// guarda a posicao do ultimo espaco
+				$espaco = $i;
+				// se o numero de letras adicionas for igual ao limite
+				if ($contador == $length) {
+					// adiciona a palavra ao array
+					array_push($ans, $palavras);
+					// zera o contador e reinicia a string palavras para poder adicionar uma proxima palavra ao array
+					$contador = 0;
+					$palavras = '';
+				}
+				// se a palavra for maior que o limite
+				if ($contador > $length) {
+					// conta quantos caracteres a mais desde o ultimo espaco, remove e adiciona na string palavras
+					for ($j = $contador; $j >= $espaco; $j--) {
+						$remove++;
+						if ($j == $espaco) {
+							substr($palavras, 0, - $remove);
+							// adiciona a palavra ao array
+							array_push($ans, $palavras);
+							// zera o contador e reinicia a string palavras para poder adicionar uma proxima palavra ao array
+							$contador = 0;
+							$palavras = '';
+						}
+					}
+				}
+			}
+		}
+		return $ans;
+	}  
 }
+
