@@ -25,44 +25,30 @@ class Resolucao implements TextWrapInterface {
 	 */
 	public function textWrap(string $text, int $length): array {
 		$n = strlen($text);
-		$contador = 0;
+		$sum = 0;
 		$palavras = '';
-		$remove = 0;
 		$ans = array();
+		$words = explode(" ", $text);
 		// se a string for vazia retorna null
 		if ($n == 0) {
 			return [NULL];
 		}
-		for ($i = 0;$i < $n; $i++) {
-			// adiciona uma letra por vez na variavel palavra
-			$palavras .= $text[$i];
-			// contador de letras adicionadas
-			$contador++;
-			// se a letra for um espaco
-			if ($text[$i] == ' ') {
-				// guarda a posicao do ultimo espaco
-				$espaco = $i-1;
-				}
-				// se a palavra for maior que o limite
-				if ($contador >= $length) {
-					// conta quantos caracteres a mais desde o ultimo espaco, remove, e adiciona na string palavras
-					for ($j = $contador; $j >= $espaco; $j--) {
-						$remove++;
-						if ($j == $espaco) {
-							$retirar = $contador - $remove;
-							mb_substr($palavras, 0, $retirar);
-							// adiciona a palavra ao array
-							array_push($ans, $palavras);
-							// zera o contador e reinicia a string palavras para poder adicionar uma proxima palavra ao array
-							$contador = 0;
-							$palavras = '';
-						}
-					}
-				}
+		for ($i = 0; $i < $n; $i++){
+			$sum = $words[$i] + $sum;
+			if ( $sum <= $length){
+				$palavras .= $words[$i];
 			}
-		return $ans;
+			if ( $sum > $length){
+				$sum = 0;
+				array_push($ans, $palavras);
+				$palavras = '';
+				$i--;
+			}
 		}
+		return $ans;
+	}
 }
+
 
 		
 
