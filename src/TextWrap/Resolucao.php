@@ -34,7 +34,8 @@ class Resolucao implements TextWrapInterface {
 		if (mb_strlen($text) == 0) {
 			return [NULL];
 		}
-		for ($i = 1; $i < count($words); $i++){
+		for ($i = 0; $i < count($words); $i++){
+			if($i == 0) continue;
 			$sum = mb_strlen($words[$i]) + $sum + 1;
 			if ( mb_strlen($palavras) <= $length){
 				if ($sum <= $length){
