@@ -37,7 +37,7 @@ class Resolucao implements TextWrapInterface {
 			if ( strlen($palavras) <= $length){
 				$palavras .= ' ' . $words[$i];
 			}
-			elseif ( $sum > $length){
+			elseif ( strlen($palavras) > $length){
 				array_push($ans, $palavras);
 				$palavras = '';
 				
