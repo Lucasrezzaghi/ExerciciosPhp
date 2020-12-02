@@ -26,12 +26,12 @@ class Resolucao implements TextWrapInterface {
 	public function textWrap(string $text, int $length): array {
 		$words = explode(" ", $text);
 		if( $length > 0 && mb_strlen($text) > 0){
-			if(isset($words[0])){
-				$string = '';
-				$ans = array();
-				$string .= $words[0];
-				$sum = mb_strlen($words[0]);
-				for ($i = 0; $i < count($words); $i++){
+			$string = '';
+			$ans = array();
+			$string .= $words[0];
+			$sum = mb_strlen($words[0]);
+			for ($i = 0; $i < count($words); $i++){
+				if(isset($words)){
 					if($i == 0) continue;
 					$sum = mb_strlen($words[$i]) + $sum + 1;
 					if ( mb_strlen($string) <= $length){
@@ -46,14 +46,15 @@ class Resolucao implements TextWrapInterface {
 						$sum = mb_strlen($words[$i]);
 					}
 				}
-				return $ans;
 			}
+			return $ans;
 		}
 		else {
 			return [""];
 		}
 	}
 }
+
 
 
 
