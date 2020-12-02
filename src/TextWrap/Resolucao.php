@@ -50,7 +50,7 @@ class Resolucao implements TextWrapInterface {
 						$remove++;
 						if ($j == $espaco) {
 							$retirar = $contador - $remove;
-							substr($palavras, 0, $retirar);
+							mb_substr($palavras, 0, $retirar);
 							// adiciona a palavra ao array
 							array_push($ans, $palavras);
 							// zera o contador e reinicia a string palavras para poder adicionar uma proxima palavra ao array
