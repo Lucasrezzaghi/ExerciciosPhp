@@ -24,23 +24,20 @@ class Resolucao implements TextWrapInterface {
 	 * testes unitários.
 	 */
 	public function textWrap(string $text, int $length): array {
-		$sum = 0;
 		$palavras = '';
 		$ans = array();
 		$words = explode(" ", $text);
 		$n = sizeof($words);
+		$palavras .= $words[$0];
 		// se a string for vazia retorna null
 		if ($n == 0) {
 			return [NULL];
 		}
-		for ($i = 0; $i < $n; $i++){
-			$sum = $sum + strlen($words[$i]);
-			if ( $sum <= $length){
-				$palavras .= $words[$i] . ' ';
+		for ($i = 1; $i < $n; $i++){
+			if ( strlen($palavras) <= $length){
+				$palavras .= ' ' . $words[$i];
 			}
 			elseif ( $sum > $length){
-				$sum = 0;
-				substr($palavras, 0, -1);
 				array_push($ans, $palavras);
 				$palavras = '';
 				
