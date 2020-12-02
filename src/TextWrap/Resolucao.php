@@ -26,6 +26,7 @@ class Resolucao implements TextWrapInterface {
 	public function textWrap(string $text, int $length): array {
 		$palavras = '';
 		$ans = array();
+		$espacos = 1;
 		$words = explode(" ", $text);
 		$n = sizeof($words);
 		$palavras .= $words[0];
@@ -35,13 +36,14 @@ class Resolucao implements TextWrapInterface {
 			return [NULL];
 		}
 		for ($i = 1; $i < $n; $i++){
-			$sum = mb_strlen($words[$i]) + $sum;
+			$espacos++;
+			$sum = mb_strlen($words[$i]) + $sum + $espacos;
 			if ( mb_strlen($palavras) <= $length){
 				if ($sum <= $length){
 					$palavras .= ' ' . $words[$i];
 				}
 			}
-			elseif ( mb_strlen($palavras) > $length || $sum > $length){
+			if ( mb_strlen($palavras) > $length || $sum > $length){
 				array_push($ans, $palavras);
 				$palavras = '';
 				
