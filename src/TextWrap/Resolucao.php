@@ -24,36 +24,35 @@ class Resolucao implements TextWrapInterface {
 	 * testes unitários.
 	 */
 	public function textWrap(string $text, int $length): array {
-		$palavras = '';
-		$ans = array();
-		$words = explode(" ", $text);
-		//$n = sizeof($words) - 1;
-		$palavras .= $words[0];
-		$sum = mb_strlen($words[0]);
-		// se a string for vazia retorna nulla
-		if (mb_strlen($text) == 0) {
-			return [NULL];
-		}
-		for ($i = 0; $i < count($words); $i++){
-			if($i == 0) continue;
-			$sum = mb_strlen($words[$i]) + $sum + 1;
-			if ( mb_strlen($palavras) <= $length){
-				if ($sum <= $length){
-					$palavras .= ' ' . $words[$i];
+		if( $length > 0 && mb_strlen($text) > 0){
+			$palavras = '';
+			$ans = array();
+			$words = explode(" ", $text);
+			$palavras .= $words[0];
+			$sum = mb_strlen($words[0]);
+			for ($i = 0; $i < count($words); $i++){
+				if($i == 0) continue;
+				$sum = mb_strlen($words[$i]) + $sum + 1;
+				if ( mb_strlen($palavras) <= $length){
+					if ($sum <= $length){
+						$palavras .= ' ' . $words[$i];
+					}
+				}
+				if ($sum > $length){
+					array_push($ans, $palavras);
+					$palavras = '';
+					$palavras .= $words[$i];
+					$sum = mb_strlen($words[$i]);
 				}
 			}
-			if ($sum > $length){
-				array_push($ans, $palavras);
-				$palavras = '';
-				$palavras .= $words[$i];
-				$sum = mb_strlen($words[$i]);
-				
-			}
+			return $ans;
 		}
-		return $ans;
+		else {
+			return [""];
+		}
 	}
 }
 
 
-		
+
 
