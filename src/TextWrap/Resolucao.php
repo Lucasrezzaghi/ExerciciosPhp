@@ -42,17 +42,9 @@ class Resolucao implements TextWrapInterface {
 			if ($text[$i] == ' ') {
 				// guarda a posicao do ultimo espaco
 				$espaco = $i;
-				// se o numero de letras adicionas for igual ao limite da linha
-				if ($contador == $length) {
-					// adiciona a palavra ao array
-					array_push($ans, $palavras);
-					// zera o contador e reinicia a string palavras para poder adicionar uma proxima palavra ao array
-					$contador = 1;
-					$palavras = '';
 				}
-				if ($contador < $length) continue;
 				// se a palavra for maior que o limite
-				if ($contador > $length) {
+				if ($contador >= $length) {
 					// conta quantos caracteres a mais desde o ultimo espaco, remove e adiciona na string palavras
 					for ($j = $contador; $j >= $espaco; $j--) {
 						$remove++;
@@ -67,8 +59,9 @@ class Resolucao implements TextWrapInterface {
 					}
 				}
 			}
-		}
 		return $ans;
-	}  
+		}
 }
+
+		
 
