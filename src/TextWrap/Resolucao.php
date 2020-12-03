@@ -29,8 +29,8 @@ class Resolucao implements TextWrapInterface {
 			$string = '';
 			$ans = array();
 			$string .= $words[0];
-			$sum = mb_strlen($words[0]) - 1;
-			for ($i = 0; $i < count($words) + 1; $i++){
+			$sum = mb_strlen($words[0]);
+			for ($i = 0; $i < count($words); $i++){
 				if(isset($words)){
 					$sum = mb_strlen($words[$i]) + $sum + 1;
 					if ( mb_strlen($string) <= $length){
@@ -42,7 +42,7 @@ class Resolucao implements TextWrapInterface {
 						array_push($ans, $string);
 						$string = '';
 						$string .= $words[$i];
-						$sum = mb_strlen($words[$i]) - 1;
+						$sum = mb_strlen($words[$i]);
 					}
 				}
 			}
