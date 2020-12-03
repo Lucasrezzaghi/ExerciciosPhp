@@ -46,8 +46,8 @@ class Resolucao implements TextWrapInterface {
 					}
 				}
 			}
+			return $ans;
 		}
-		return $ans;
 
 		else {
 			return [""];
