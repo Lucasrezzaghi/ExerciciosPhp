@@ -27,8 +27,10 @@ class Resolucao implements TextWrapInterface {
 		$words = explode(" ", $text);
 		if( $length > 0 && mb_strlen($text) > 0){
 			$string = '';
-			$ans = array();
-			$string .= $words[0];
+			$ans = array(); 
+			if(isset($words[0])){
+				$string .= $words[0];
+			}
 			$sum = mb_strlen($words[0]);
 			for ($i = 1; $i < count($words); $i++){
 				if(isset($words)){
