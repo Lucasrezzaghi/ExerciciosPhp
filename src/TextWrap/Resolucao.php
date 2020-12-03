@@ -42,7 +42,7 @@ class Resolucao implements TextWrapInterface {
 						array_push($ans, $string);
 						$string = '';
 						$string .= $words[$i];
-						$sum = mb_strlen($words[$i]);
+						$sum = mb_strlen($words[$i]) - 1;
 					}
 				}
 			}
