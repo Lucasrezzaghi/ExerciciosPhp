@@ -36,7 +36,6 @@ class Resolucao implements TextWrapInterface {
 					if ( mb_strlen($string) <= $length){
 						if ($sum <= $length){
 							$string .= ' ' . $words[$i];
-							}
 						}
 					}
 					if ($sum > $length){
@@ -47,7 +46,8 @@ class Resolucao implements TextWrapInterface {
 					}
 				}
 			}
-			return $ans;
+		}
+		return $ans;
 
 		else {
 			return [""];
